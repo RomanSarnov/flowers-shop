@@ -31,3 +31,14 @@ class Product(models.Model):
     def str(self):
         return self.title
 
+
+class ProductImage(models.Model):
+    image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True)
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Картинка'
+        verbose_name_plural = 'Картинки'
+
+    def str(self):
+        return self.title
