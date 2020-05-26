@@ -20,8 +20,7 @@ class Product(models.Model):
     description = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    stock = models.PositiveIntegerField()
-    image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True)
+    stock = models.PositiveIntegerField(blank=True, null=True)
     available = models.BooleanField(default=True)
 
     class Meta:
@@ -41,4 +40,4 @@ class ProductImage(models.Model):
         verbose_name_plural = 'Картинки'
 
     def str(self):
-        return self.title
+        return self.id
