@@ -15,12 +15,12 @@ class Category(models.Model):
 class Product(models.Model):
     slug = models.SlugField(max_length=100)
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    price = models.DecimalField(decimal_places=2, max_digits=5)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    stock = models.PositiveIntegerField(blank=True, null=True)
+    stock = models.PositiveIntegerField('Скидка в процентах', blank=True, null=True, default=0)
     available = models.BooleanField(default=True)
 
     class Meta:
@@ -29,6 +29,9 @@ class Product(models.Model):
 
     def str(self):
         return self.title
+
+    def get_sale(self):
+        return int(self.price * (100 - self.stock) / 100)
 
 
 class ProductImage(models.Model):
