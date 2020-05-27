@@ -1,13 +1,37 @@
 from django.shortcuts import render
 from django.views import View
-from .models import ProductImage, Product, Category
+from .models import Product, Category
 import requests
 
 
-class ProductList(View):
-    def get(self,request):
+# Render shop page
+class ShopRender(View):
+    def get(self, request):
         products = Product.objects.filter(available=True)
-        return render(request, 'shop/shop.html', context={'products': products})
+        categories = Category.objects.all()
+
+        context = {
+            'products': products,
+            'categories': categories,
+        }
+        template = 'shop/shop.html'
+
+        return render(request, template, context)
+
+
+# Render category page
+class CategoryRender(View):
+    def get(self, request):
+        products = Product.objects.filter(available=True)
+        categories = Category.objects.all()
+
+        context = {
+            'products': products,
+            'categories': categories,
+        }
+        template = 'shop/category.html'
+
+        return render(request, template, context)
 
 
 class DiscountProducts(View):
