@@ -95,9 +95,7 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                {% for pr_image in product.images.all %}
-                                    <img src="{{ pr_image.image.url }}" alt="">
-                                {% endfor %}
+                                    <img src="{{ product.images.first.image.url }}" alt="">
                                 <!-- Hover Thumb -->
                             </div>
 
