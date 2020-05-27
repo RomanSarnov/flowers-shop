@@ -3,13 +3,13 @@ from django.views import View
 from django.http import HttpResponse
 from shop.models import Product
 
+
 class FavoriteList(View):
     def get(self, request):
-        if request.session['favorites']:
+        if request.session.get('favorites'):
             id_list = [data_dict.get('pk') for data_dict in request.session['favorites']]
-            print(id_list)
         else:
-            print('fdsggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')
+            return render(request, 'shop/favorites.html')
         products = Product.objects.filter(pk__in = id_list)
         return render(request, 'shop/favorites.html', context={'products': products})
 
@@ -45,3 +45,4 @@ class RemoveFromFavorites(View):
 class DeleteFavorite(View):
     def get(self, request):
         del request.session['favorites']
+        return render(request, 'shop/favorites.html')
