@@ -1,0 +1,5 @@
+<form action="{% url 'add_to_favourites' pk=product.pk %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="url_from" value="{{ request.path }}">
+    <button type="submit" class="btn btn-dark">Add to favorite</button>
+</form>

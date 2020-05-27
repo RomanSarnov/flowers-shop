@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -33,6 +34,8 @@ class Product(models.Model):
     def get_sale(self):
         return int(self.price * (100 - self.stock) / 100)
 
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'slug': self.slug})
 
 class ProductImage(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True)
@@ -44,3 +47,6 @@ class ProductImage(models.Model):
 
     def str(self):
         return self.id
+
+class MyUser():
+    pass

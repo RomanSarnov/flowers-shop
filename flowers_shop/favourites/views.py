@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 from shop.models import Product
@@ -9,12 +9,13 @@ class FavoriteList(View):
         if request.session.get('favorites'):
             id_list = [data_dict.get('pk') for data_dict in request.session['favorites']]
         else:
+
             return render(request, 'shop/favorites.html')
         products = Product.objects.filter(pk__in = id_list)
         return render(request, 'shop/favorites.html', context={'products': products})
 
 class AddToFavorites(View):
-    def get(self, request, pk):
+    def post(self, request, pk):
         if not request.session.get('favorites'):
             request.session['favorites'] = list()
         else:
@@ -25,24 +26,24 @@ class AddToFavorites(View):
         exist = [True for item in request.session['favorites'] if item['pk'] == pk]
         if not exist:
             request.session['favorites'].append(add_data)  # [{}, {}, {}]
-        a = request.session['favorites']
         request.session.modified = True
-        return HttpResponse(f'<h1>gfdgdfg</h1>{request.session["favorites"]}')
+        print(request.POST.get('url_from'))
+        return redirect(request.POST.get('url_from'))
 
 
 class RemoveFromFavorites(View):
-    def get(self, request, pk):
+    def post(self, request, pk):
         for item in request.session['favorites']:
             if item['pk'] == pk:
-                item.clear()
+                request.session['favorites'].remove(item)
+        if not request.session.get('favorites'):
+            del request.session['favorites']
         request.session.modified = True
-        while {} in request.session['favorites']:
-            request.session['favorites'].remove({})
-        request.session.modified = True
-        return HttpResponse(f'<h1>gfdgdfg</h1>{request.session["favorites"]}')
+
+        return redirect(request.POST.get('url_from'))
 
 
 class DeleteFavorite(View):
-    def get(self, request):
+    def post(self, request):
         del request.session['favorites']
-        return render(request, 'shop/favorites.html')
+        return redirect('shop')

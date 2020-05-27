@@ -68,6 +68,13 @@
                             <h2>Favorites</h2>
                         </div>
 
+                        {% if not products %}
+                                    <h1>У вас ничего нет</h1>
+                        {% else %}
+                            <form action="{% url 'delete_favorites' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-info">Delete favorites</button>
+                        </form>
                         <div class="cart-table clearfix">
                             <table class="table table-responsive">
                                 <thead>
@@ -79,6 +86,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% if not products %}
+                                    <h1>У вас ничего нет</h1>
+                                {% endif %}
                                 {% for product in products %}
                                     <tr>
                                         <td class="cart_product_img">
@@ -98,10 +108,13 @@
                                                     <input type="number" class="qty-text" id="qty{{ product.pk }}" step="1" min="1" max="300" name="quantity" value="1">
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty{{ product.pk }}'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
+
                                             </div>
+                                            {% include 'includes/remove_from_favorites.html' %}
                                         </td>
                                     </tr>
                                 {% endfor %}
+                                {% endif %}
                                 </tbody>
                             </table>
                         </div>

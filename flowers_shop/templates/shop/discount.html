@@ -106,21 +106,11 @@
                                     <div class="line"></div>
                                     <p class="product-price">{{ product.get_sale }}</p>
                                     <a href="product-details.html">
-                                        <h6>{{product.title}}</h6>
+                                        <a href="{{ product.get_absolute_url }}"><h6>{{product.title}}</h6></a>
                                     </a>
-                                    <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{% static 'img/core-img/cart.png' %}" alt=""></a>
-                                    </div>
                                 </div>
-                                </div>
+                                 <a href="#"><button class="btn btn-dark">Add to cart</button></a>
+                                {% include 'includes/add_to_favorite.html' %}
                             </div>
                         </div>
                     </div>
