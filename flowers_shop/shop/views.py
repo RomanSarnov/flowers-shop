@@ -4,7 +4,7 @@ from .models import Product, Category
 
 
 # Render shop page
-class ShopRender(View):
+class ProductListView(View):
     def get(self, request):
         products = Product.objects.filter(available=True)
         categories = Category.objects.all()
@@ -19,7 +19,7 @@ class ShopRender(View):
 
 
 # Render category page
-class CategoryRender(View):
+class CategoryDetailView(View):
     def get(self, request, pk):
         products = Product.objects.filter(available=True)
         categories = Category.objects.all()
@@ -33,7 +33,7 @@ class CategoryRender(View):
         return render(request, template, context)
 
 
-class DiscountProducts(View):
+class DiscountProductsView(View):
     def get(self, request):
         products = Product.objects.filter(stock__gt=0)
 

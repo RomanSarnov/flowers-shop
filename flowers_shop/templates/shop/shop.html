@@ -92,40 +92,23 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                {% for pr_image in product.images.all %}
-                                    <img src="{{ pr_image.image.url }}" alt="{{ product.title }}">
-                                {% endfor %}
+                                    <img src="{{ product.images.first.image.url }}" alt="{{ product.title }}">
                                 <!-- Hover Thumb -->
                             </div>
 
                             <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
+                                 <div class="product-description d-flex align-items-center justify-content-between">
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
-                                    <div class="row" style="margin-left: 15px;">
-                                        <div class="col">
-                                            <div class="row">
-                                                <p class="product-price">{{ product.price }} - {{ product.get_sale}}</p>
-                                            </div>
-                                            <div class="row">
-                                                <a href="product-details.html">
-                                                    <a href="{{ product.get_absolute_url }}"><h6>{{product.title}}</h6></a>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <a href="#"><button class="btn btn-dark">Add to cart</button></a>
-                                                </div>
-                                                <div class="col">
-                                                    {% include 'includes/add_to_favorite.html' %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="line"></div>
+                                    <p class="product-price">{{ product.get_sale}}</p>
+                                    <a href="product-details.html">
+                                        <a href="{{ product.get_absolute_url }}"><h6>{{product.title}}</h6></a>
+                                    </a>
                                 </div>
-                            </div>
+                                 <a href="#"><button class="btn btn-dark">Add to cart</button></a>
+                                {% include 'includes/add_to_favorite.html' %}
+                                 </div>
                         </div>
                     </div>
                     {% endfor %}
