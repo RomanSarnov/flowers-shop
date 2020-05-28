@@ -55,40 +55,17 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-7">
-                        <div class="single_product_thumb">
-                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li class="" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/pro-big-1.jpg);">
-                                    </li>
-                                    {% for im in product_images%}
-                                    <li data-target="#product_details_slider" data-slide-to="1" >
-                                     <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{ im.image.url }});">
-                                    </li>
-                                    {% endfor %}
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
-                                            <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{ first_product_image.url }});">
-                                    </li>                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-2.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-2.jpg" alt="Second slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-3.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-3.jpg" alt="Third slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
-                                        </a>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col">
+                                <img src="{{ first_product_image.image.url }}" alt="альтернативный текст">
                             </div>
+                        </div>
+                        <div class="row">
+                            {% for im in product_images%}
+                                <div class="col-4">
+                                    <img src="{{ im.image.url }}" alt="альтернативный текст">
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-12 col-lg-5">
