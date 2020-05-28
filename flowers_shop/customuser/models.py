@@ -8,4 +8,4 @@ class AddressData(models.Model):
 
 
 class CustomUser(AbstractUser):
-    address = models.ForeignKey(AddressData, related_name='user', on_delete=models.CASCADE)
+    address = models.ForeignKey(AddressData, related_name='user', on_delete=models.CASCADE, blank=True, null=True)
