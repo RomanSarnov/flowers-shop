@@ -93,7 +93,7 @@
                             <!-- Product Image -->
                             <div class="product-img">
                                 {% for pr_image in product.images.all %}
-                                    <img src="{{ pr_image.image.url }}" alt="">
+                                    <img src="{{ pr_image.image.url }}" alt="{{ product.title }}">
                                 {% endfor %}
                                 <!-- Hover Thumb -->
                             </div>

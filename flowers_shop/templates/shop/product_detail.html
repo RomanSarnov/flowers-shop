@@ -63,7 +63,7 @@
                         <div class="row">
                             {% for im in product_images%}
                                 <div class="col-4">
-                                    <img src="{{ im.image.url }}" alt="альтернативный текст">
+                                    <img src="{{ im.image.url }}" alt="альтернативный текст" width="300" height="300">
                                 </div>
                             {% endfor %}
                         </div>
@@ -75,7 +75,7 @@
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
                                 <a href="product-details.html">
-                                    <h6>White Modern Chair</h6>
+                                    <h6>{{ product.title }}</h6>
                                 </a>
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -91,11 +91,16 @@
                                     </div>
                                 </div>
                                 <!-- Avaiable -->
-                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                                {% if product.available == True %}
+                                    <p class="avaibility"><i class="fa fa-circle"></i> Available</p>
+                                {% else %}
+                                    <p class="avaibility"><i class="fa "></i> No available</p>
+                                {% endif %}
+
                             </div>
 
                             <div class="short_overview my-5">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
+                                <p>{{ product.description }}</p>
                             </div>
 
                             <!-- Add to Cart Form -->
