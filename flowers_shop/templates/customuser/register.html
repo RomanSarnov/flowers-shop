@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-content-wrapper d-flex clearfix">
+    {% include 'includes/header.html' %}
+    <div class="mt-5 mr-5">
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-info">Зарегистрироваться</button>
+    </form>
+    </div>
+    </div>
+{% endblock content %}
