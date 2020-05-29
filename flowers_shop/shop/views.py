@@ -21,7 +21,7 @@ class ProductListView(View):
 # Render category page
 class CategoryDetailView(View):
     def get(self, request, pk):
-        products = Product.objects.filter(available=True)
+        products = Product.objects.filter(category_id=pk, available=True)
         categories = Category.objects.all()
 
         context = {

@@ -3,6 +3,7 @@ from django.urls import reverse
 
 
 class Category(models.Model):
+    slug = models.SlugField(max_length=100, default=False)
     title = models.CharField(max_length=100)
 
     class Meta:
@@ -36,6 +37,7 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})
+
 
 class ProductImage(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True)
