@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('shop.urls')),
     path('favourites/', include('favourites.urls')),
     path('user/', include('customuser.urls')),
+    path('contact/', include('contact.urls'))
 ]
 # Для обнаружения медиа файлов
 if settings.DEBUG:
