@@ -7,14 +7,22 @@ from django.contrib.auth import login, logout
 class UserCreateView(View):
     def get(self, request):
         form = UserRegisterForm()
-        context = {'form': form}
+
+        context = {
+            'form': form
+        }
         template = "customuser/register.html"
+
         return render(request, template, context=context)
+
 
     def post(self, request):
         form = UserRegisterForm(request.POST)
         template = "customuser/register.html"
-        context = {'form': form}
+        context = {
+            'form': form
+        }
+
         if form.is_valid():
             form.save()
             return redirect('login')
@@ -29,6 +37,7 @@ class UserLoginView(View):
         context = {'form': form}
         return render(request, template, context=context)
 
+
     def post(self, request):
         form = UserLoginForm(data=request.POST)
         template = 'customuser/login.html'
@@ -39,11 +48,13 @@ class UserLoginView(View):
             login(request, user)
 
             return redirect('shop')
+
         else:
             for error in form.non_field_errors():
                 print(error)
             context = {'form': form}
             return render(request, template, context=context)
+
 
 class UserLogoutView(View):
     def get(self, request):
