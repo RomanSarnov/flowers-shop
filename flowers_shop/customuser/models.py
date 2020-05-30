@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
+
 
 class AddressData(models.Model):
     postal_code = models.CharField(max_length=20)

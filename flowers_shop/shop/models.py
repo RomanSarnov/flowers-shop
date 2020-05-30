@@ -3,6 +3,7 @@ from django.urls import reverse
 
 
 class Category(models.Model):
+    slug = models.SlugField(max_length=100, default=False)
     title = models.CharField(max_length=100)
 
     class Meta:

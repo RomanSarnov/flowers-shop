@@ -97,19 +97,25 @@
                             </div>
 
                             <!-- Product Description -->
-                                 <div class="product-description d-flex align-items-center justify-content-between">
+                            <div class="product-description d-flex align-items-center justify-content-between">
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">{{ product.get_sale}}</p>
+                                    <p class="product-price">${{ product.get_sale}}</p>
                                     <a href="product-details.html">
                                         <a href="{{ product.get_absolute_url }}"><h6>{{product.title}}</h6></a>
                                     </a>
                                 </div>
-                                 <a href="#"><button class="btn btn-dark">Add to cart</button></a>
                                 {% include 'includes/add_to_favorite.html' %}
-                                 </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#"><button class="btn btn-dark btn-block">Add to cart</button></a>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     {% endfor %}
 

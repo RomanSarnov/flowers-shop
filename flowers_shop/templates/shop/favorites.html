@@ -63,7 +63,7 @@
         <div class="cart-table-area section-padding-100">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-12">
                         <div class="cart-title mt-50">
                             <h2>Favorites</h2>
                         </div>
@@ -73,8 +73,9 @@
                         {% else %}
                             <form action="{% url 'delete_favorites' %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-info">Delete favorites</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete favorites</button>
                         </form>
+                        <br>
                         <div class="cart-table clearfix">
                             <table class="table table-responsive">
                                 <thead>
@@ -98,7 +99,7 @@
                                             <h5>{{ product.title }}</h5>
                                         </td>
                                         <td class="price">
-                                            <span>{{ product.get_sale }}</span>
+                                            <span>${{ product.get_sale }}</span>
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">

@@ -42,4 +42,5 @@ class AddNewsletterView(View):
             sender = settings.EMAIL_HOST_USER
             recipient = form.cleaned_data['email']
             send_email_task.delay(subject, text, sender, [recipient])
+
         return redirect(request.POST.get('url_from'))
