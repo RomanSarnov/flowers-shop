@@ -10,4 +10,4 @@ class Feedback(models.Model):
         return self.subject
 
 class Newsletter(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)

@@ -5,6 +5,7 @@ from .forms import FeedbackForm, NewsletterForm
 from django.views import View
 from django.conf import settings
 from .tasks import send_email_task, send_newsletter
+from django.db import IntegrityError
 
 
 class CreateFeedbackView(View):
@@ -41,6 +42,4 @@ class AddNewsletterView(View):
             sender = settings.EMAIL_HOST_USER
             recipient = form.cleaned_data['email']
             send_email_task.delay(subject, text, sender, [recipient])
-            return redirect(request.POST.get('url_from'))
-        template = reverse(request.POST.get('url_from'))
-        return render(request, template)
+        return redirect(request.POST.get('url_from'))
