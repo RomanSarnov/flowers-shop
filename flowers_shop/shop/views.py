@@ -8,7 +8,8 @@ class ProductListView(View):
     def get(self, request):
         products = Product.objects.filter(available=True)
         categories = Category.objects.all()
-
+        for i in products:
+            print(i.stock)
         context = {
             'products': products,
             'categories': categories,

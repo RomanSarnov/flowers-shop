@@ -3,8 +3,9 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    slug = models.SlugField(max_length=100, default=False)
     title = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, default=title)
+
 
     class Meta:
         verbose_name_plural = "Категории"
@@ -25,7 +26,7 @@ class Product(models.Model):
     description = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    stock = models.PositiveIntegerField('Скидка в процентах', blank=True, null=True, default=0)
+    stock = models.PositiveIntegerField('Скидка в процентах', default=0)
     available = models.BooleanField(default=True)
 
     class Meta:
@@ -53,5 +54,3 @@ class ProductImage(models.Model):
     def str(self):
         return self.id
 
-class MyUser():
-    pass

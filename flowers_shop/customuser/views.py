@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserRegisterForm, UserLoginForm
 from django.contrib.auth import login, logout
+from django.contrib import messages
 
 
 class UserCreateView(View):
@@ -25,8 +26,10 @@ class UserCreateView(View):
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'You registered successfully')
             return redirect('login')
         else:
+            messages.error(request, 'An error has occurred')
             return render(request, template, context=context)
 
 

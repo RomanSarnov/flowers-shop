@@ -14,7 +14,7 @@ SECRET_KEY = '3xw$wnvhaby0#(olv@o%-78r-w00@p1!k^v3@f23qy()cgenqn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -26,10 +26,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
     'shop',
     'favourites',
     'customuser',
     'contact',
+
+    'social_django',
+    'debug_toolbar',
+    # 'allauth',
+    # 'allauth.account',
+
 ]
 
 MIDDLEWARE = [
@@ -40,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'flowers_shop.urls'
@@ -55,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -133,3 +143,32 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'romansashaproject@gmail.com'
 EMAIL_HOST_PASSWORD = 'adminadmin12345'
 EMAIL_PORT = 587
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'shop'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'customuser.authentication.EmailAuthBackend',
+    'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+]
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '7495940' # VK App id
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'JYjpA1jqsYpgoZ0GtJxx' # VK App Secret
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_KEY = '274540583911031' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '3f3e813f737a85f2bbaa821401380da9' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]

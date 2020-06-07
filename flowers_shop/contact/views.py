@@ -36,7 +36,9 @@ class AddNewsletterView(View):
     def post(self, request):
         form = NewsletterForm({'email': request.POST.get('email')})
         if form.is_valid():
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.email = new_form.email.lower()
+            new_form.save()
             subject = 'Вы подписались на рассылку'
             text = 'Спасибо за подписку!'
             sender = settings.EMAIL_HOST_USER
