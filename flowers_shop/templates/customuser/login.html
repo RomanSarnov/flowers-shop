@@ -6,14 +6,19 @@
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
                 {% for error in form.non_field_errors %}
+                      <div class="alert alert-danger" role="alert">
                           {{ error }}
+                      </div>
                 {% endfor %}
                 <br>
                 {% for field in form %}
+                    <div class="invalid-feedback">
                      {{ field.errors }}
+                    </div>
                      {{ field.label_tag }}{{ field }}
                 {% endfor %}
             <button class="btn btn-info" type="submit">Войти</button>
         </form>
+        <a href="{% url 'password_reset' %}"><button class="btn btn-info">Забыли пароль?</button></a>
     </div>
 {% endblock content %}

@@ -11,8 +11,16 @@ urlpatterns = [
     path('cart', include('cart.urls')),
     path('orders', include('order.urls')),
     path('user/', include('customuser.urls')),
-    path('contact/', include('contact.urls'))
+    path('contact/', include('contact.urls')),
+    path('social-auth/', include('social_django.urls', namespace='social')),
 ]
+
 # Для обнаружения медиа файлов
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

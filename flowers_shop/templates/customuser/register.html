@@ -9,6 +9,8 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-info">Зарегистрироваться</button>
     </form>
+        <a class="vk-oauth2" href="{% url "social:begin" "facebook" %}">Facebook</a>
+        <a class="vk-oauth2" href="{% url "social:begin" "vk-oauth2" %}">VK</a>
     </div>
     </div>
 {% endblock content %}

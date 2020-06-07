@@ -19,3 +19,7 @@ class NewsletterForm(forms.ModelForm):
     class Meta:
         model = Newsletter
         fields = ('email',)
+
+    def clean_email(self):
+        def clean_email(self):
+            return self.cleanead_data['email'].lower()
