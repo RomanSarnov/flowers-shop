@@ -1,0 +1,5 @@
+<form action="{% url 'remove_from_cart' pk=product.pk %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="url_from" value="{{ request.path }}">
+    <button type="submit" class="btn btn-danger">Remove from cart</button>
+</form>

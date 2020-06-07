@@ -11,7 +11,7 @@
                 <div class="catagories-menu">
                     <ul>
                         {% for category in categories %}
-                            <li class=""><a href="{% url 'category' %}">{{ category.title }}</a></li>
+                            <li class=""><a href="{{ category_detail.slug }}">{{ category.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

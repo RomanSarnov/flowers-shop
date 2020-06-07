@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
 from shop.models import Product
 
 
@@ -11,8 +10,9 @@ class FavoriteList(View):
         else:
 
             return render(request, 'shop/favorites.html')
-        products = Product.objects.filter(pk__in = id_list)
+        products = Product.objects.filter(pk__in=id_list)
         return render(request, 'shop/favorites.html', context={'products': products})
+
 
 class AddToFavorites(View):
     def post(self, request, pk):
