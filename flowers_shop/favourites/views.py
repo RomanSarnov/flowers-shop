@@ -14,9 +14,9 @@ class FavoriteList(View):
         form = CartAddProductForm()
         context = {
             'products': products,
-            'form': 'form'
+            'form': form
         }
-        return render(request, 'shop/favorites.html', context={'products': products})
+        return render(request, 'shop/favorites.html', context=context)
 
 
 class AddToFavorites(View):
