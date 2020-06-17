@@ -1,28 +1,33 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Product, Category
+from cart.forms import CartAddProductForm
 
 
 # Render shop page
 class ProductListView(View):
     def get(self, request):
-        products = Product.objects.filter(available=True)
+        products = Product.objects.filter(available=True).prefetch_related('images')
         categories = Category.objects.all()
-        for i in products:
-            print(i.stock)
+        form = CartAddProductForm()
         context = {
             'products': products,
             'categories': categories,
+            'form': form
         }
         template = 'shop/shop.html'
-
         return render(request, template, context)
+
+    def get_first(self, queryset):
+        return queryset[0]
 
 
 # Render category page
 class CategoryDetailView(View):
-    def get(self, request, pk):
-        products = Product.objects.filter(category_id=pk, available=True)
+    def get(self, request, slug):
+        products = Product.objects.filter(category__slug=slug, available=True)\
+            .select_related('category')\
+            .prefetch_related('images')
         categories = Category.objects.all()
 
         context = {
@@ -36,7 +41,7 @@ class CategoryDetailView(View):
 
 class DiscountProductsView(View):
     def get(self, request):
-        products = Product.objects.filter(stock__gt=0)
+        products = Product.objects.filter(stock__gt=0).prefetch_related('images')
 
         context = {
             'products': products

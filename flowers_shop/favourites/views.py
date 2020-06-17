@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from shop.models import Product
+from cart.forms import CartAddProductForm
 
 
 class FavoriteList(View):
@@ -8,9 +9,13 @@ class FavoriteList(View):
         if request.session.get('favorites'):
             id_list = [data_dict.get('pk') for data_dict in request.session['favorites']]
         else:
-
             return render(request, 'shop/favorites.html')
-        products = Product.objects.filter(pk__in=id_list)
+        products = Product.objects.filter(pk__in=id_list).prefetch_related('images')
+        form = CartAddProductForm()
+        context = {
+            'products': products,
+            'form': 'form'
+        }
         return render(request, 'shop/favorites.html', context={'products': products})
 
 

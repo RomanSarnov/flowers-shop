@@ -5,7 +5,7 @@ from .tasks import send_email_for_reset_password
 from .models import CustomUser
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm, PasswordResetForm
 from django.template import loader
-
+from customuser.models import AddressData
 
 
 class UserRegisterForm(UserCreationForm):
@@ -45,3 +45,9 @@ class CustomResetPasswordForm(PasswordResetForm):
     #
     #     send_email_for_reset_password.delay(subject_template_name, email_template_name,
     #                                         context, from_email, to_email, html_email_template_name)
+
+
+class AddressDataForm(forms.ModelForm):
+    class Meta:
+        model = AddressData
+        fields = ['postal_code', 'city', 'address']

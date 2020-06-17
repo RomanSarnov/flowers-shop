@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load get_image_tag %}
 <html lang="en">
 {% block title %}
     <title>Shop</title>
@@ -95,7 +96,7 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                    <img src="{{ product.images.first.image.url }}" alt="">
+                                    <img src="{% get_image product.images.all %}" alt="">
                                 <!-- Hover Thumb -->
                             </div>
 

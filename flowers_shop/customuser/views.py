@@ -56,5 +56,9 @@ class UserLoginView(View):
 
 class UserLogoutView(View):
     def get(self, request):
+        cart = request.session.get('cart')
+        favorites = request.session.get('favorites')
         logout(request)
+        request.session['cart'] = cart
+        request.session['favorites'] = favorites
         return redirect('shop')
