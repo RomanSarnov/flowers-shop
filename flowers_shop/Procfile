@@ -1,0 +1,1 @@
+web: gunicorn flowers_shoppip3 install gunicorn.wsgi --log-file -
