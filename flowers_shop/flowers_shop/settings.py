@@ -41,6 +41,23 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'flowers_shop.urls'
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SECRET_KEY = '3xw$wnvhaby0#(olv@o%-78r-w00@p1!k^v3@f23qy()cgenqn'
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
 
 TEMPLATES = [
     {
@@ -98,7 +115,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -144,14 +161,3 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 INTERNAL_IPS = ('127.0.0.1',)
 
-try:
-    from .local_settings import *
-except ImportError:
-    from .prod_settings import *
-
-# Heroku: Update database configuration from $DATABASE_URL.
-
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
