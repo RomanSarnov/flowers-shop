@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import EmailMultiAlternatives
-from .tasks import send_email_for_reset_password
+# from .tasks import send_email_for_reset_password
 from .models import CustomUser
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm, PasswordResetForm
 from django.template import loader
