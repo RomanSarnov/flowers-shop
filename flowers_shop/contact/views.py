@@ -4,7 +4,7 @@ from .models import Feedback
 from .forms import FeedbackForm, NewsletterForm
 from django.views import View
 from django.conf import settings
-# from .tasks import send_email_task, send_newsletter
+from .tasks import send_email_task, send_newsletter
 from django.db import IntegrityError
 
 
