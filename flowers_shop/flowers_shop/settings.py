@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'orders',
     'cart',
 
-    'social_django',
+    # 'social_django',
     'debug_toolbar',
 ]
 

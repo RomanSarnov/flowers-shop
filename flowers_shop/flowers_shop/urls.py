@@ -12,7 +12,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('user/', include('customuser.urls')),
     path('contact/', include('contact.urls')),
-    path('social-auth/', include('social_django.urls', namespace='social')),
+    # path('social-auth/', include('social_django.urls', namespace='social')),
 ]
 
 # Для обнаружения медиа файлов
