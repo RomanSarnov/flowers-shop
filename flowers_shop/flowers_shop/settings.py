@@ -121,11 +121,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'customuser.CustomUser'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -150,14 +150,14 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
 ]
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '7495940' # VK App id
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'JYjpA1jqsYpgoZ0GtJxx' # VK App Secret
-SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
-
-SOCIAL_AUTH_FACEBOOK_KEY = '274540583911031' # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '3f3e813f737a85f2bbaa821401380da9' # Facebook App Secret
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
-INTERNAL_IPS = ('127.0.0.1',)
+# SOCIAL_AUTH_VK_OAUTH2_KEY = '7495940' # VK App id
+# SOCIAL_AUTH_VK_OAUTH2_SECRET = 'JYjpA1jqsYpgoZ0GtJxx' # VK App Secret
+# SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+#
+# SOCIAL_AUTH_FACEBOOK_KEY = '274540583911031' # Facebook App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = '3f3e813f737a85f2bbaa821401380da9' # Facebook App Secret
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+#
+# DEBUG_TOOLBAR_PATCH_SETTINGS = False
+# INTERNAL_IPS = ('127.0.0.1',)
 
