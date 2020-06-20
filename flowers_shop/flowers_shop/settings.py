@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'cart',
 
     # 'social_django',
-    'debug_toolbar',
+    # 'debug_toolbar',
 ]
 
 
